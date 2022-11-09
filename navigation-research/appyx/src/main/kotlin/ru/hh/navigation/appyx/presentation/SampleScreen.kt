@@ -7,8 +7,11 @@ import com.bumble.appyx.core.modality.BuildContext
 import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.navmodel.backstack.BackStack
 import com.bumble.appyx.navmodel.backstack.operation.push
+import ru.hh.navigation.appyx.facade.AppyxDeps
+import ru.hh.navigation.appyx.facade.AppyxSampleFacade
 import ru.hh.navigation.common.SampleScreenContent
 import ru.hh.navigation.common.randomString
+import toothpick.ktp.extension.getInstance
 
 internal class SampleScreen(
     buildContext: BuildContext,
@@ -29,6 +32,9 @@ internal class SampleScreen(
             openMultiscreen = { backStack.push(NavTarget.MultiStack) },
             openScreenModel = { backStack.push(NavTarget.Stack()) },
             openComplexNavigation = { backStack.push(NavTarget.ComplexNavigation(randomString())) },
+            openFragment = {
+                AppyxSampleFacade().featureScope.getInstance<AppyxDeps>().openFragment()
+            },
             screenTitle = title,
             modifier = Modifier.fillMaxSize()
         )

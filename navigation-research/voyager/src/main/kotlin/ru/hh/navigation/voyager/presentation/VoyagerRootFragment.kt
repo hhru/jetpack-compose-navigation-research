@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.Fragment
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
+import cafe.adriel.voyager.transitions.SlideTransition
 import ru.hh.navigation.common.randomString
 
 internal val LocalShowToast = staticCompositionLocalOf<() -> Unit> { {} }
@@ -33,7 +34,9 @@ internal class VoyagerRootFragment : Fragment() {
                         }
                     ) {
                         BottomSheetNavigator {
-                            Navigator(screen = SampleScreen(randomString()))
+                            Navigator(screen = SampleScreen(randomString())) {
+                                SlideTransition(navigator = it)
+                            }
                         }
                     }
                 }

@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import ru.hh.compose.navigations.di.DemoDi
+import ru.hh.compose.navigations.navigation.openScreen
 import ru.hh.di.DiFragmentPlugin
 import ru.hh.navigation.appyx.facade.AppyxSampleFacade
 import ru.hh.navigation.google.facade.GoogleNavigationSampleFacade
@@ -40,32 +41,24 @@ internal class SelectNavigationFragment : Fragment() {
                 MaterialTheme {
                     SelectNavigationContent(
                         openAppex = {
-                            openScreen(AppyxSampleFacade().api::getNavFragment)
+                            router.openScreen(AppyxSampleFacade().api::getNavFragment)
                         },
                         openGoogle = {
-                            openScreen(GoogleNavigationSampleFacade().api::getNavFragment)
+                            router.openScreen(GoogleNavigationSampleFacade().api::getNavFragment)
                         },
                         openVoyager = {
-                            openScreen(VoyagerSampleFacade().api::getNavFragment)
+                            router.openScreen(VoyagerSampleFacade().api::getNavFragment)
                         },
                         openSelfMade = {
-                            openScreen(SelfMadeSampleFacade().api::getNavFragment)
+                            router.openScreen(SelfMadeSampleFacade().api::getNavFragment)
                         },
                         openModo = {
-                            openScreen(ModoSampleFacade().api::getNavFragment)
+                            router.openScreen(ModoSampleFacade().api::getNavFragment)
                         },
                     )
                 }
             }
         }
-
-    private fun openScreen(factory: () -> Fragment) {
-        router.navigateTo(
-            object : FragmentScreen {
-                override fun createFragment(factory: FragmentFactory): Fragment = factory()
-            }
-        )
-    }
 
 }
 

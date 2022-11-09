@@ -12,6 +12,9 @@ import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import ru.hh.navigation.common.SampleScreenContent
 import ru.hh.navigation.common.randomString
+import ru.hh.navigation.modo.facade.ModoDeps
+import ru.hh.navigation.modo.facade.ModoSampleFacade
+import toothpick.ktp.extension.getInstance
 
 @Parcelize
 internal class SampleScreen(
@@ -33,6 +36,9 @@ internal class SampleScreen(
             openMultiscreen = { parent.forward(MultiStackScreen(1)) },
             openScreenModel = { },
             openComplexNavigation = { parent.forward(ComplexNavigationScreen(randomString())) },
+            openFragment = {
+                ModoSampleFacade().featureScope.getInstance<ModoDeps>().openFragment()
+            },
             screenTitle = title,
             modifier = Modifier.fillMaxSize()
         )

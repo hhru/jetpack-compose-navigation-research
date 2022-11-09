@@ -39,6 +39,7 @@ fun SampleScreenContent(
     openScreenModel: () -> Unit,
     openComplexNavigation: () -> Unit,
     modifier: Modifier = Modifier,
+    openFragment: (() -> Unit)? = null,
     screenTitle: String? = null,
 ) {
     ScreenWithButtons(
@@ -50,7 +51,8 @@ fun SampleScreenContent(
             "Flow with header" to startFlowWithHeader,
             "MultiScreen" to openMultiscreen,
             "Complex navigation" to openComplexNavigation,
-            "Model sample" to openScreenModel
+            "Model sample" to openScreenModel,
+            openFragment?.let { "Open fragment" to it },
         ),
         screenTitle = screenTitle,
         modifier = modifier.randomBackground(),

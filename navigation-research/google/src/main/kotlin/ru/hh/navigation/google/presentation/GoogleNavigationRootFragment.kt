@@ -29,6 +29,9 @@ import ru.hh.navigation.common.DialogContent
 import ru.hh.navigation.common.MultiStackScreenContent
 import ru.hh.navigation.common.TABS
 import ru.hh.navigation.common.randomString
+import ru.hh.navigation.google.facade.GoogleDeps
+import ru.hh.navigation.google.facade.GoogleNavigationSampleFacade
+import toothpick.ktp.extension.getInstance
 
 internal class GoogleNavigationRootFragment : Fragment() {
 
@@ -158,6 +161,9 @@ internal class GoogleNavigationRootFragment : Fragment() {
                 navController.navigate(Screens.Sample.destination(null))
             },
             openComplexNavigation = { },
+            openFragment = {
+                GoogleNavigationSampleFacade().featureScope.getInstance<GoogleDeps>().openFragment()
+            },
             screenTitle = it.arguments?.getString(Screens.Sample.titleArg),
             modifier = Modifier.fillMaxSize()
         )

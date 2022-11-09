@@ -15,9 +15,13 @@ internal class ModoRootFragment : Fragment() {
 
     private var rootScreen: ModoStackScreen? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        rootScreen = Modo.init(savedInstanceState, rootScreen) { ModoStackScreen() }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         ComposeView(requireContext()).apply {
-            rootScreen = Modo.init(savedInstanceState, rootScreen) { ModoStackScreen() }
             setContent {
                 rootScreen?.Content()
             }

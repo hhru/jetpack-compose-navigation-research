@@ -9,6 +9,9 @@ import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import ru.hh.navigation.common.SampleScreenContent
 import ru.hh.navigation.common.randomString
+import ru.hh.navigation.voyager.facade.VoyagerDeps
+import ru.hh.navigation.voyager.facade.VoyagerSampleFacade
+import toothpick.ktp.extension.getInstance
 
 internal class SampleScreen(
     private val title: String,
@@ -30,6 +33,9 @@ internal class SampleScreen(
             openMultiscreen = { navigator.push(MultiStackScreen(0)) },
             openScreenModel = { },
             openComplexNavigation = { navigator.push(ComplexNavigationScreen()) },
+            openFragment = {
+                VoyagerSampleFacade().featureScope.getInstance<VoyagerDeps>().openFragment()
+            },
             screenTitle = title,
             modifier = Modifier.fillMaxSize()
         )
