@@ -10,10 +10,7 @@ import com.github.terrakok.modo.LocalContainerScreen
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.ScreenKey
 import com.github.terrakok.modo.generateScreenKey
-import com.github.terrakok.modo.stack.StackState
-import com.github.terrakok.modo.stack.forward
-import com.github.terrakok.modo.stack.removeScreen
-import com.github.terrakok.modo.stack.replace
+import com.github.terrakok.modo.stack.*
 import kotlinx.parcelize.Parcelize
 import ru.hh.navigation.common.ComplexNavigationSampleContent
 import ru.hh.navigation.common.randomString
@@ -28,7 +25,7 @@ internal class ComplexNavigationScreen(
     @Composable
     override fun Content() {
         val showNotSupported = LocalShowNotSupported.current
-        val parent = LocalContainerScreen.current
+        val parent = LocalContainerScreen.current as StackScreen
         val closePrevEnabled by remember {
             derivedStateOf {
                 (parent.navigationState as StackState).stack.size > 1
@@ -53,9 +50,7 @@ internal class ComplexNavigationScreen(
                     ComplexNavigationScreen(randomString()),
                 )
             },
-            closeStack = {
-                showNotSupported()
-            },
+            closeStack = { parent.backToRoot() },
             closePrevScreen = closePrevScreen,
             replaceScreen = { parent.replace(ComplexNavigationScreen(randomString())) },
             screenTitle = text,

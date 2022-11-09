@@ -4,13 +4,14 @@ import androidx.compose.animation.*
 import androidx.compose.runtime.Composable
 import com.github.terrakok.modo.ComposeRendererScope
 import com.github.terrakok.modo.DialogScreen
+import com.github.terrakok.modo.ExperimentalModoApi
 import com.github.terrakok.modo.animation.ScreenTransition
 import com.github.terrakok.modo.animation.StackTransitionType
 import com.github.terrakok.modo.animation.calculateStackTransitionType
 import com.github.terrakok.modo.stack.StackState
 
 @Composable
-@OptIn(ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class, ExperimentalModoApi::class)
 fun ComposeRendererScope<StackState>.SlideTransition() {
     ScreenTransition(
         transitionSpec = {

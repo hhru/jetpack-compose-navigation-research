@@ -7,6 +7,7 @@ import com.github.terrakok.modo.LocalContainerScreen
 import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.ScreenKey
 import com.github.terrakok.modo.generateScreenKey
+import com.github.terrakok.modo.stack.StackScreen
 import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import ru.hh.navigation.common.SampleScreenContent
@@ -20,7 +21,7 @@ internal class SampleScreen(
 
     @Composable
     override fun Content() {
-        val parent = LocalContainerScreen.current
+        val parent = LocalContainerScreen.current as StackScreen
         val showNotSupported = LocalShowNotSupported.current
         SampleScreenContent(
             openScreen = { parent.forward(SampleScreen(randomString())) },

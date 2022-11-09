@@ -8,8 +8,9 @@ import ru.hh.navigation.common.randomString
 
 @Parcelize
 internal class ModoStackScreen(
-    private val backStack: StackNavModel = StackNavModel(SampleScreen(randomString())),
-) : StackScreen(backStack) {
+    private val navModel: StackNavModel =
+        StackNavModel(SampleScreen(randomString())),
+) : StackScreen(navModel) {
 
     @Composable
     override fun Content() {

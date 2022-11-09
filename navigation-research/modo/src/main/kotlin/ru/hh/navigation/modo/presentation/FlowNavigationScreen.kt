@@ -26,7 +26,7 @@ internal class FlowNavigationScreen(
     @Composable
     override fun Content() {
         val step by remember { derivedStateOf { navigationState.stack.size } }
-        val parent = LocalContainerScreen.current
+        val parent = LocalContainerScreen.current as StackScreen
         FlowScreenContainer(step = step, stepsCount = STEPS_COUNT) {
             CompositionLocalProvider(
                 LocalOpenNextStep provides {

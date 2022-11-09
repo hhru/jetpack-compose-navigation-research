@@ -30,7 +30,9 @@ internal fun SelfMadeNavigation() {
             stack = navigationState.stack.dropLast(1)
         )
     }
-    val renderScreen by remember { derivedStateOf { navigationState.stack.last() } }
+    val renderScreen by remember {
+        derivedStateOf { navigationState.stack.last() }
+    }
     CompositionLocalProvider(
         LocalNavigateForward provides {
             navigationState = navigationState.copy(

@@ -1,6 +1,8 @@
 package ru.hh.navigation.appyx.presentation
 
 import android.os.Parcelable
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.bumble.appyx.core.composable.Children
@@ -10,6 +12,7 @@ import com.bumble.appyx.core.node.Node
 import com.bumble.appyx.core.node.ParentNode
 import com.bumble.appyx.navmodel.backstack.BackStack
 import com.bumble.appyx.navmodel.backstack.operation.pop
+import com.bumble.appyx.navmodel.backstack.transitionhandler.rememberBackstackSlider
 import kotlinx.parcelize.Parcelize
 import ru.hh.navigation.common.randomString
 
@@ -31,7 +34,11 @@ internal class StackNode(
     @Composable
     override fun View(modifier: Modifier) {
         Children(
-            navModel = backStack
+            navModel = backStack,
+            transitionHandler = rememberBackstackSlider(
+                clipToBounds = true,
+                transitionSpec = { spring(stiffness = Spring.StiffnessMediumLow) }
+            ),
         )
     }
 }
